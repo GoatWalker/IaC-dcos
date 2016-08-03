@@ -1,7 +1,3 @@
-variable "aws_access_key" {
-}
-variable "aws_secret_key" {
-}
 variable "key_pair_name" {
 }
 variable "dcos_installer_url" {

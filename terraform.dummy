@@ -3,10 +3,6 @@ pre_tag = "Dummy-Prod"
 post_tag = "Terra"
 
 /* Secret */
-aws_access_key = "Dummy"
-aws_secret_key = "Dummy"
-aws_region     = "ap-northeast-1"             /* ap-northeast-1 for Tokyo, ap-southeast-1 for SG */
-registry_storage_s3_region = "ap-northeast-1" /* ap-northeast-1 for Tokyo, ap-southeast-1 for SG */
 aws_ssl_certificate_arn_id = "Dummy"
 public_subnet_cidr = "10.0.0.0/24"
 
