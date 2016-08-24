@@ -51,12 +51,6 @@ variable "centos_amis" {
 variable "dcos_cluster_name" {
   description = "DC/OS cluster name"
 }
-variable "dcos_username" {
-  description = "DC/OS Username"
-}
-variable "dcos_password" {
-  description = "DC/OS password"
-}
 
 variable "dcos_master_count" {
   description = "Master count"
@@ -75,7 +69,7 @@ variable "nfs_access_address" {
 
 variable "dcos_installer_url" {
   description = "DCOS installer url"
-  default = "https://downloads.mesosphere.com/dcos/stable/dcos_generate_config.ee.sh"
+  default = "https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh"
 }
 
 variable "master_user_data" {

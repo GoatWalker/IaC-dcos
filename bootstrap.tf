@@ -26,12 +26,6 @@ resource "aws_instance" "bootstrap" {
     command = "echo CLUSTER_NAME=\"${var.dcos_cluster_name}\" >> ips.txt"
   }
   provisioner "local-exec" {
-    command = "echo DCOS_USERNAME=\"${var.dcos_username}\" >> ips.txt"
-  }
-  provisioner "local-exec" {
-    command = "echo 77faa1f1-80aa-4a74-7bd1-53e90b8979c5 > UUID"
-  }
-  provisioner "local-exec" {
     command = "echo 'private_security_group_id = \"${aws_security_group.private.id}\"' >> ../terraform.out"
   }
   provisioner "local-exec" {
@@ -74,10 +68,6 @@ resource "null_resource" "dcos-installation" {
     command = "sed -i -e '/^- *$/d' ./config.yaml"
   }
   provisioner "file" {
-    source = "./UUID"
-    destination = "$HOME/UUID"
-  }
-  provisioner "file" {
     source = "./ip-detect"
     destination = "$HOME/genconf/ip-detect"
   }
@@ -90,10 +80,7 @@ resource "null_resource" "dcos-installation" {
       "curl -fsSL https://get.docker.com/ | sh",
       "sudo service docker start",
       "sudo systemctl enable docker",
-      "sudo bash dcos_generate_config.ee.sh --hash-password ${var.dcos_password} > secret_hash",
-      "sed -i -n '$p' secret_hash",
-      "echo 'superuser_password_hash:' $(cat $HOME/secret_hash) >> $HOME/genconf/config.yaml",
-      "sudo bash $HOME/dcos_generate_config.ee.sh",
+      "sudo bash $HOME/dcos_generate_config.sh",
       "sudo docker run --restart=always -d -p 9999:80 -v $HOME/genconf/serve:/usr/share/nginx/html:ro nginx 2>/dev/null"
     ]
   }

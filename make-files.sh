@@ -16,10 +16,7 @@ master_list:
 resolvers:
 - 8.8.4.4
 - 8.8.8.8
-ssh_key_path: '/genconf/ssh_key'
-ssh_port: 22
-ssh_user: core
-superuser_username: $DCOS_USERNAME
+oauth_enabled: 'false'
 FIN
 
 cat > ip-detect << FIN
