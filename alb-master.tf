@@ -1,6 +1,6 @@
 # Create a new load balancer
 resource "aws_alb" "master" {
-  name            = "${var.pre_tag}-Master-ALB-${var.post_tag}"
+  name            = "${replace(var.pre_tag, "/^(.{14}).*/", "$1")}-Master-ALB-${replace(var.post_tag, "/^(.{6}).*/", "$1")}"
   internal        = false
   security_groups = ["${var.public_security_group_id}"]
   subnets         = ["${var.public_subnet_id}","${aws_subnet.private-secondary.id}"]
