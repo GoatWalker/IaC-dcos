@@ -1,5 +1,6 @@
 resource "aws_elb" "logstash" {
-  name = "${var.pre_tag}-Logstash-ELB-${var.post_tag}"
+  /* limit name length to 32 charecters*/
+  name = "${replace(var.pre_tag, "/^(.{14}).*/", "$1")}-Logstash-ELB-${replace(var.post_tag, "/^(.{6}).*/", "$1")}"
   subnets = ["${var.public_subnet_id}"]
   security_groups = ["${var.public_security_group_id}"]
 

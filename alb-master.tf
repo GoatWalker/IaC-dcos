@@ -1,5 +1,6 @@
 # Create a new load balancer
 resource "aws_alb" "master" {
+  /* limit name length to 32 charecters*/
   name            = "${replace(var.pre_tag, "/^(.{14}).*/", "$1")}-Master-ALB-${replace(var.post_tag, "/^(.{6}).*/", "$1")}"
   internal        = false
   security_groups = ["${var.public_security_group_id}"]
